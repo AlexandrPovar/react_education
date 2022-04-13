@@ -16,13 +16,19 @@ const CountersList = () => {
     const newCounters = counters.filter((c) => c.id !== id);
     setCounters(newCounters);
   };
-  const handleIncrement = (value) => {
-    console.log("handleIncrement", value);
-    setCounters(value + 1);
+  const handleIncrement = (id) => {
+    console.log("handleIncrement", id);
+    const incrementValue = counters.map((count) =>
+      count.id === id ? { ...count, value: count.value + 1 } : { ...count }
+    );
+    setCounters(incrementValue);
   };
-  const handleDecrement = (value) => {
-    const valueDecrement = value - 1;
-    setCounters(valueDecrement);
+  const handleDecrement = (id) => {
+    console.log("handleDecrement", id);
+    const decrementValue = counters.map((count) =>
+      count.id === id ? { ...count, value: count.value - 1 } : { ...count }
+    );
+    setCounters(decrementValue);
   };
   const handleReset = () => {
     setCounters(initialState);
